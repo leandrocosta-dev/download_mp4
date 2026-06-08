@@ -1,0 +1,6 @@
+﻿.venv/
+__pycache__/
+*.pyc
+ffmpeg.exe
+screenshots/
+*.mp4
