@@ -24,6 +24,7 @@ class HotmartDownloader:
         ssl_ignore=False,
         custom_ca_path=None,
         ffmpeg_path=None,
+        next_lesson_xpath=None,
     ):
         self.download_dir = Path(download_dir)
         self.download_dir.mkdir(exist_ok=True)
@@ -35,6 +36,7 @@ class HotmartDownloader:
         self.ssl_ignore = ssl_ignore
         self.custom_ca_path = custom_ca_path if custom_ca_path else None
         self.ffmpeg_path = self._resolve_ffmpeg_path(ffmpeg_path)
+        self.next_lesson_xpath = next_lesson_xpath
 
     def _resolve_ffmpeg_path(self, provided_path):
         """Tenta localizar o ffmpeg automaticamente."""
@@ -350,7 +352,10 @@ class HotmartDownloader:
 
     def click_next_lesson_button(self):
         """Clica no botão de próxima aula"""
-        next_xpaths = [
+        next_xpaths = []
+        if self.next_lesson_xpath:
+            next_xpaths.append(self.next_lesson_xpath)
+        next_xpaths += [
             '/html/body/div[1]/div/hc-structure-2_11_18/hc-structure-content-2_11_18/hc-container-2_11_18/main/div/div/div/section/div[1]/div[2]/hc-tooltip-2_11_18/a',
             '//hc-tooltip-2_11_18/a',
             '//hc-tooltip-2_11_18//a',
