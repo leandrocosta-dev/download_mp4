@@ -4,3 +4,4 @@ __pycache__/
 ffmpeg.exe
 screenshots/
 *.mp4
+.chrome_profile_alura/
